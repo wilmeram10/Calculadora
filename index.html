@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculadora</title>
+
+    <!--Estilos.-->
+    <style>
+        #cuerpoCalculadora {
+            background-color: gray;
+            height: 520px;
+            width: 500px;
+            display: grid;
+            margin-left: 30%;
+            margin-top: 3%;
+        }
+
+        #teclados {
+            background-color: gray;   
+            position: relative;
+            grid-template-areas:
+                "pantalla1 pantalla1 pantalla1 pantalla1"
+                "pantalla2 pantalla2 pantalla2 pantalla2"
+                "siete ocho nueve division"
+                "cuatro cinco seis menos"
+                "uno dos tres mas"
+                "restablecer cero multiplicar igual";
+            margin-bottom: 10px;
+        }
+
+        #areaDatos {
+            position: absolute;
+            grid-area: pantalla1;
+            height: 60px;
+            width: 430px;
+            margin: 35px 0px 50px 31px;
+            background-color: white;
+            text-align: left;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            border-style: solid;
+            border-color: blue;
+            border-width: 3px;
+            z-index: 1;
+            font-size: 40px;
+        }
+
+        #areaResultado {
+            position: absolute;
+            grid-area: pantalla2;
+            height: 50px;
+            width: 430px;
+            margin: 90px 0px 50px 31px;
+            background-color: white;
+            text-align: right;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border-style: solid;
+            border-color: blue;
+            border-width: 3px;
+            z-index: 2;
+            border-bottom: -9px;
+            font-size: 40px;
+        }
+
+        #separador {
+            width: 434px;
+            height: 3px;
+            background-color: white;
+            margin: 90px 0px 50px 34px;
+            z-index: 3;
+        }
+
+        #siete {
+            grid-area: siete;
+            height: 70px;
+            width: 100px;
+            margin-left: 31px;
+            margin-right: 2px;
+            margin-bottom: 5px;
+            margin-top: 10px;
+        }
+
+        #ocho {
+            grid-area: ocho;
+            height: 70px;
+            width: 100px;
+            margin-right: 2px;
+        }
+
+        #nueve {
+            grid-area: nueve;
+            height: 70px;
+            width: 100px;
+            margin-right: 2px;
+        }
+
+        #restablecer {
+            grid-area: restablecer;
+            height: 70px;
+            width: 100px;
+            margin-left: 31px;
+            margin-right: 2px;
+            margin-bottom: 5px;
+            background-color: rgba(255, 51, 0, 0.493);
+        }
+
+        #cuatro {
+            grid-area: cuatro;
+            height: 70px;
+            width: 100px;
+            margin-left: 31px;
+            margin-right: 2px;
+            margin-bottom: 5px;
+        }
+
+        #cinco {
+            grid-area: cinco;
+            height: 70px;
+            width: 100px;
+            margin-right: 2px;
+        }
+
+        #seis {
+            grid-area: seis;
+            height: 70px;
+            width: 100px;
+            margin-right: 2px;
+        }
+
+        #menos {
+            grid-area: menos;
+            height: 70px;
+            width: 100px;
+        }
+
+        #uno {
+            grid-area: uno;
+            height: 70px;
+            width: 100px;
+            margin-left: 31px;
+            margin-right: 2px;
+            margin-bottom: 5px;
+        }
+
+        #dos {
+            grid-area: dos;
+            height: 70px;
+            width: 100px;
+            margin-right: 2px;
+        }
+
+        #tres {
+            grid-area: tres;
+            height: 70px;
+            width: 100px;
+            margin-right: 2px;
+        }
+
+        #mas {
+            grid-area: mas;
+            height: 70px;
+            width: 100px;
+        }
+
+        #cero {
+            grid-area: cero;
+            height: 70px;
+            width: 100px;
+            margin-right: 2px;
+        }
+
+        #multiplicar {
+            grid-area: multiplicar;
+            height: 70px;
+            width: 100px;
+            margin-right: 2px;
+        }
+
+        #division {
+            position: relative;
+            grid-area: division; 
+            height: 70px;
+            width: 100px;
+            margin-right: 2px;
+        }
+
+        #igual {
+            position: relative;
+            grid-area: igual;
+            height: 70px;
+            width: 100px;
+        }
+
+        .radius {
+            border-style: solid;
+            border-color: black;
+            border-radius: 15px;
+            font-size: 45px;
+            border-width: 4px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body onload="iniciar();">
+    <div id="cuerpoCalculadora" class="radius">
+        <textarea id="areaDatos"></textarea>
+        <textarea id="areaResultado"></textarea>
+        <div id="separador"></div>
+        <div id="teclados">
+            <button id="siete" class="radius">7</button>
+            <button id="ocho" class="radius">8</button>
+            <button id="nueve" class="radius">9</button>
+            <button id="division" class="radius">/</button>
+            <button id="cuatro" class="radius">4</button>
+            <button id="cinco" class="radius">5</button>
+            <button id="seis" class="radius">6</button>
+            <button id="menos" class="radius">-</button>
+            <button id="uno" class="radius">1</button>
+            <button id="dos" class="radius">2</button>
+            <button id="tres" class="radius">3</button>
+            <button id="mas" class="radius">+</button>
+            <button id="restablecer" class="radius">C</button>
+            <button id="cero" class="radius">0</button>
+            <button id="multiplicar" class="radius">*</button>
+            <button id="igual" class="radius">=</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function iniciar() {
+            var nroUno = document.getElementById("uno");
+            var nroDos = document.getElementById("dos");
+            var nroTres = document.getElementById("tres");
+            var nroCuatro = document.getElementById("cuatro");
+            var nroCinco = document.getElementById("cinco");
+            var nroSeis = document.getElementById("seis");
+            var nroSiete = document.getElementById("siete");
+            var nroOcho = document.getElementById("ocho");
+            var nroNueve = document.getElementById("nueve");
+            var nroCero = document.getElementById("cero");
+            var signoMas = document.getElementById("mas");
+            var signoMenos = document.getElementById("menos");
+            var signoMultiplicar = document.getElementById("multiplicar");
+            var signoIgual = document.getElementById("igual");
+            var signoDivision = document.getElementById("division");
+            var areaDtos = document.getElementById("areaDatos");
+            var areaResut = document.getElementById("areaResultado");
+            var botonRestablecer = document.getElementById("restablecer");
+
+            function limpiar(){
+                areaDtos.textContent = "";
+                areaResut.textContent = 0;
+            }
+
+            //Eventos
+
+            nroUno.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroUno.innerText;
+            });
+            nroDos.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroDos.innerText;
+            });
+            nroTres.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroTres.innerText;
+            });
+            nroCuatro.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroCuatro.innerText;
+            });
+            nroCinco.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroCinco.innerText;
+            });
+            nroSeis.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroSeis.innerText;
+            });
+            nroSiete.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroSiete.innerText;
+            });
+            nroOcho.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroOcho.innerText;
+            });
+            nroNueve.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroNueve.innerText;
+            });
+            nroCero.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + nroCero.innerText;
+            });
+            signoMas.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + signoMas.innerText;
+            });
+            signoMenos.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + signoMenos.innerText;
+            });
+            signoMultiplicar.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + signoMultiplicar.innerText;
+            });
+            signoDivision.addEventListener("click", function () {
+                areaDtos.textContent = areaDtos.textContent + signoDivision.innerText;
+            });
+
+            botonRestablecer.addEventListener("click", function(){
+                limpiar();
+            })
+
+            signoIgual.addEventListener("click", function () {
+                var datos = areaDtos.value;
+                var expReg = /^\d+|^\D|\D|\d+/g;
+                var arrNros = datos.match(expReg);
+                var resul = 0;
+                if(arrNros[0] === "-" | arrNros[0] === "+"){
+                    for(let i = 0; i < arrNros.length; i++){                        
+                        if (arrNros[i] === "-") {
+                            resul -= Number(arrNros[i + 1]);
+                        } else if (arrNros[i] === "+") {
+                            resul += Number(arrNros[i + 1]);
+                        } else if (arrNros[i] === "/") {
+                            resul /= Number(arrNros[i + 1])
+                        } else if (arrNros[i] === "*") {
+                            resul *= Number(arrNros[i + 1]);
+                        }
+                    }
+                    areaResut.textContent = resul;
+                }else if(Number(arrNros[0]) >= 0){
+                    arrNros.unshift("+");
+                    console.log(arrNros);            
+                    for(let i = 0; i < arrNros.length; i++){                        
+                        if (arrNros[i] === "-") {
+                            resul -= Number(arrNros[i + 1]);
+                        } else if (arrNros[i] === "+") {
+                            resul += Number(arrNros[i + 1]);
+                        } else if (arrNros[i] === "/") {
+                            resul /= Number(arrNros[i + 1])
+                        } else if (arrNros[i] === "*") {
+                            resul *= Number(arrNros[i + 1]);
+                        }
+                    }
+                    areaResut.textContent = resul; 
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
